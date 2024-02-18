@@ -1,6 +1,10 @@
+
+
+using BookRepo.ViewModel;
+
 namespace BookRepoTest
 {
-    public class Tests
+    public class MainWindowTest
     {
         [SetUp]
         public void Setup()
@@ -10,7 +14,8 @@ namespace BookRepoTest
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            var mm = new MainWindowModel();
+            mm.Print();
         }
     }
 }
