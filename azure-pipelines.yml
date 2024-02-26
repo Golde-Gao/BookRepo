@@ -28,8 +28,12 @@ stages:
            solution: '**/*.sln'
            platform: 'Any CPU'
            configuration: 'Release'
+        - task: VisualStudioTestPlatformInstaller@1
+          inputs:
+            versionSelector: 'SpecificVersion'
+            testPlatformVersion: '17.3.2'
         - task: VSTest@2
-          displayName: VSTest
+          displayName: 'VSTest'
           inputs:
            platform: 'Any CPU'
            configuration: 'Release'
