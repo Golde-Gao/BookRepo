@@ -6,14 +6,37 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+  - stage: RestoreAndRebuildSln
+    jobs: 
+    - job:
+      pool:
+        vmImage: "windows-latest"
+      steps:
+        - task: NuGetToolInstaller@1
+          displayName: install nuget tools
+        - task: NuGetCommand@2
+          displayName: restore nuget packages
+          inputs:
+           command: restore
+           restoreSolution: '**/*.sln'
+        - task: VSBuild@1
+          displayName: build solution
+          inputs:
+           solution: '**/*.sln'
+           platform: 'Any CPU'
+           configuration: 'Release'
+        - task: VSTest@2
+          displayName: VSTest
+          inputs:
+           platform: 'Any CPU'
+           configuration: 'Release'
+           codeCoverageEnabled: True
+           runInParallel: True
+           runTestsInIsolation: True
+           vsTestVersion: 'toolsInstaller'
+           distributionBatchType: 'basedOnTestCases'
+
+
