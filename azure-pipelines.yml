@@ -12,7 +12,7 @@ pr:
 stages:
   - stage: RestoreAndRebuildSln
     jobs: 
-    - job:
+    - job: buildAndUnitest
       pool:
         vmImage: "windows-latest"
       steps:
