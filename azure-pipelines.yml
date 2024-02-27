@@ -11,9 +11,7 @@ trigger:
 pr: 
   - master
 
-stages:
-  - stage: RestoreAndRebuildSln
-    jobs: 
+jobs: 
     - job: buildAndUnitest
       pool:
         vmImage: "windows-latest"
