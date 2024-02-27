@@ -3,16 +3,16 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: buildConfig
+
 trigger:
   - master
 
 pr: 
   - master
 
-stages:
-  - stage: RestoreAndRebuildSln
-    jobs: 
-    - job:
+jobs: 
+    - job: buildAndUnitest
       pool:
         vmImage: "windows-latest"
       steps:
