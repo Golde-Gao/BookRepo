@@ -20,5 +20,6 @@
         <Button Grid.Column="1" Grid.Row="0" Content="Click" Click="Button_Click" />
         <Button Grid.Column="0" Grid.Row="2" Content="Click 3" />
         <Button Grid.Column="0" Grid.Row="0" Content="Click 4" />
+        <Button Grid.Column="2" Grid.Row="2" Content="Click 5" />
     </Grid>
 </Window>
