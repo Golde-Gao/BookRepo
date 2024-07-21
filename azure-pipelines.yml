@@ -49,10 +49,8 @@ jobs:
         - task: CopyFiles@2
           displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
           inputs: 
-            SourceFolder: '$(Build.SourcesDirectory)/src/$(ShellProjectFolderName)/bin/Release'
-            Contents: |
-              **/*
-              !**/*.pdb
+            SourceFolder: '$(Build.SourcesDirectory)'
+            Contents: '**'
             TargetFolder: '$(Build.ArtifactStagingDirectory)/$(RepoName)/bin'
         - task: PublishBuildArtifacts@1
           inputs:
