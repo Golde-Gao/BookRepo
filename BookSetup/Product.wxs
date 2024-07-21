@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define BookRepo_TargetDir=$(var.BookRepo.TargetDir)?>
+	<Product Id="*" Name="BookSetup" Language="1033" Version="1.0.0.0" Manufacturer="gsixin" UpgradeCode="84f69f8f-a8c1-43bb-9173-76ea0e3bd83f">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="BookSetup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="BookSetup" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			<Component Id="BookRepo.runtimeconfig.json" Guid="010a0298-afce-4f81-8dc5-84f05f751572">
+			  <File Id="BookRepo.runtimeconfig.json" Name="BookRepo.runtimeconfig.json" Source="$(var.BookRepo_TargetDir)BookRepo.runtimeconfig.json" />
+			</Component>
+			<Component Id="BookRepo.dll" Guid="71366abf-ebe0-4c07-9f0a-c62ca4bcf12b">
+			  <File Id="BookRepo.dll" Name="BookRepo.dll" Source="$(var.BookRepo_TargetDir)BookRepo.dll" />
+			</Component>
+			<Component Id="BookRepo.exe" Guid="bd6c51c1-8e68-4585-999b-2fb550626532">
+				<File Id="BookRepo.exe" Name="BookRepo.exe" Source="$(var.BookRepo_TargetDir)BookRepo.exe" />
+			</Component>
+			<Component Id="BookRepo.pdb" Guid="925ec5e6-302b-46d8-b49d-e02a9261bc95">
+				<File Id="BookRepo.pdb" Name="BookRepo.pdb" Source="$(var.BookRepo_TargetDir)BookRepo.pdb" />
+			</Component>
+			<Component Id="BookRepo.deps.json" Guid="3484ac1e-bd60-4c1a-8f3b-0d27d1d703d3">
+				<File Id="BookRepo.deps.json" Name="BookRepo.deps.json" Source="$(var.BookRepo_TargetDir)BookRepo.deps.json" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
