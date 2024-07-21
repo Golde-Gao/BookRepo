@@ -43,5 +43,9 @@ jobs:
            runTestsInIsolation: True
            vsTestVersion: 'toolsInstaller'
            distributionBatchType: 'basedOnTestCases'
+        - task: PublishBuildArtifacts@1
+          inputs:
+            pathToPublish: '$(Build.ArtifactStagingDirectory)'
+            artifactName: bookRepo
 
 
