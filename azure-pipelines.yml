@@ -49,7 +49,7 @@ jobs:
         - task: CopyFiles@2
           displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
           inputs: 
-            SourceFolder: '$(Build.SourcesDirectory)/$(RepoName)/bin/Release'
+            SourceFolder: '$(Build.SourcesDirectory)/$(ShellProjectFolderName)/bin/Release'
             Contents: '**'
             TargetFolder: '$(Build.ArtifactStagingDirectory)/Release'
         - task: ArchiveFiles@1
