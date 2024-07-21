@@ -49,12 +49,18 @@ jobs:
         - task: CopyFiles@2
           displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
           inputs: 
-            SourceFolder: '$(Build.SourcesDirectory)'
+            SourceFolder: '$(Build.SourcesDirectory)/$(RepoName)/bin/'
             Contents: '**'
             TargetFolder: '$(Build.ArtifactStagingDirectory)/$(RepoName)/bin'
+        - task: ArchiveFiles@1
+          displayName: Archive files
+          inputs:
+            rootFolder: '$(Build.ArtifactStagingDirectory)/$(RepoName)/bin/$(ShellProjectFolderName)/bin/Release'
+            includeRootFolder: false
+            archiveFile: $(Build.ArtifactStagingDirectory)/$(RepoName).zip    
         - task: PublishBuildArtifacts@1
           inputs:
-            pathToPublish: '$(Build.ArtifactStagingDirectory)'
+            pathToPublish: $(Build.ArtifactStagingDirectory)/$(RepoName).zip
             artifactName: bookRepo
 
 
